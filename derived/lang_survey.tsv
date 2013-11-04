@@ -1,0 +1,280 @@
+MARC code	Count	Description
+   	1951	No description - not a known MARC code
+ ||	1	No description - not a known MARC code
+ace	1	Achinese
+afa	1	Afroasiatic (Other)
+afr	7	Afrikaans
+ain	1	Ainu
+alb	6	Albanian
+alg	1	Algonquian (Other)
+amh	15	Amharic
+ang	37	"English, Old (ca. 450-1100)"
+ara	1993	Arabic
+arc	14	Aramaic
+arm	586	Armenian
+arw	1	Arawak
+asm	10	Assamese
+aus	3	Australian languages
+ave	11	Avestan
+awa	1	Awadhi
+aym	1	Aymara
+bal	8	Baluchi
+ban	6	Balinese
+baq	10	Basque
+bas	1	Basa
+bel	1	Belarusian
+ben	161	Bengali
+ber	1	Berber (Other)
+bla	1	Siksika
+bnt	17	Bantu (Other)
+bos	1	Bosnian
+bra	2	Braj
+bre	9	Breton
+btk	18	Batak
+bug	36	Bugis
+bul	114	Bulgarian
+bur	834	Burmese
+byn	1	Bilin
+car	2	Carib
+cat	63	Catalan
+ceb	1	Cebuano
+chg	1	Chagatai
+chi	94	Chinese
+chn	1	Chinook jargon
+cho	11	Choctaw
+chp	3	Chipewyan
+chr	11	Cherokee
+chu	53	Church Slavic
+chv	2	Chuvash
+cop	19	Coptic
+cpp	5	"Creoles and Pidgins, Portuguese-based (Other)"
+cre	8	Cree
+crp	1	Creoles and Pidgins (Other)
+cze	698	Czech
+dak	8	Dakota
+dan	1015	Danish
+del	1	Delaware
+dra	11	Dravidian (Other)
+dua	12	Duala
+dum	1	"Dutch, Middle (ca. 1050-1350)"
+dut	1918	Dutch
+efi	7	Efik
+egy	1	Egyptian
+eng	325445	English
+enm	4	"English, Middle (1100-1500)"
+epo	17	Esperanto
+esk	2	Eskimo languages  DEPRECEATED
+est	13	Estonian
+ewe	1	Ewe
+fat	3	Fanti
+fij	3	Fijian
+fin	90	Finnish
+fiu	5	Finno-Ugrian (Other)
+fre	19225	French
+frm	2	"French, Middle (ca. 1300-1600)"
+fro	22	"French, Old (ca. 842-1300)"
+fry	9	Frisian
+gem	18	Germanic (Other)
+geo	14	Georgian
+ger	17293	German
+gez	9	Ethiopic
+gla	19	Scottish Gaelic
+gle	62	Irish
+glg	1	Galician
+glv	8	Manx
+gmh	22	"German, Middle High (ca. 1050-1500)"
+goh	8	"German, Old High (ca. 750-1050)"
+got	16	Gothic
+grb	10	Grebo
+grc	3396	"Greek, Ancient (to 1453)"
+gre	314	"Greek, Modern (1453-)"
+guj	98	Gujarati
+gwi	9	Gwich'in
+hai	5	Haida
+hau	13	Hausa
+haw	14	Hawaiian
+heb	6393	Hebrew
+hil	1	Hiligaynon
+hin	124	Hindi
+hrv	13	Croatian
+hun	978	Hungarian
+iba	1	Iban
+ibo	8	Igbo
+ice	110	Icelandic
+ilo	3	Iloko
+inc	101	Indic (Other)
+ind	4	Indonesian
+iro	5	Iroquoian (Other)
+ita	5405	Italian
+jav	88	Javanese
+jpn	561	Japanese
+jpr	3	Judeo-Persian
+jrb	22	Judeo-Arabic
+kac	14	Kachin
+kam	1	Kamba
+kan	63	Kannada
+kar	68	Karen languages
+kas	6	Kashmiri
+kaw	1	Kawi
+kha	14	Khasi
+khi	5	Khoisan (Other)
+khm	7	Khmer
+kmb	4	Kimbundu
+kok	1	Konkani
+kom	3	Komi
+kon	2	Kongo
+kor	8	Korean
+kos	2	Kosraean
+kru	5	Kurukh
+kua	3	Kuanyama
+kur	3	Kurdish
+lad	81	Ladino
+lao	3	Lao
+lat	8153	Latin
+lav	16	Latvian
+lin	57	Lingala
+lit	19	Lithuanian
+lol	2	Mongo-Nkundu
+lug	32	Ganda
+lus	5	Lushai
+mad	3	Madurese
+mah	1	Marshallese
+mak	21	Makasar
+mal	169	Malayalam
+mao	47	Maori
+map	54	Austronesian (Other)
+mar	104	Marathi
+may	357	Malay
+men	5	Mende
+mic	9	Micmac
+min	3	Minangkabau
+mis	6	Miscellaneous languages
+mkh	7	Mon-Khmer (Other)
+mlg	76	Malagasy
+mlt	12	Maltese
+mnc	3	Manchu
+mni	2	Manipuri
+moh	30	Mohawk
+mon	12	Mongolian
+mul	737	Multiple languages
+mun	7	Munda (Other)
+myn	11	Mayan languages
+nah	2	Nahuatl
+nai	1	North American Indian (Other)
+nds	16	Low German
+nep	19	Nepali
+new	2	Newari
+ng 	6	No description - not a known MARC code
+nia	1	Nias
+nic	11	Niger-Kordofanian (Other)
+nno	2	Norwegian (Nynorsk)
+non	1	Old Norse
+nor	138	Norwegian
+nso	1	Northern Sotho
+nya	2	Nyanja
+nym	1	Nyamwezi
+nyo	1	Nyoro
+oci	3	Occitan (post 1500)
+oji	13	Ojibwa
+ori	139	Oriya
+oss	2	Ossetic
+ota	70	"Turkish, Ottoman"
+paa	3	Papuan (Other)
+pag	7	Pangasinan
+pal	1	Pahlavi
+pan	32	Panjabi
+per	320	Persian
+pli	99	Pali
+pol	482	Polish
+pon	2	Pohnpeian
+por	1078	Portuguese
+pra	1	Prakrit languages
+pro	1	Provençal (to 1500)
+pus	9	Pushto
+raj	1	Rajasthani
+rar	2	Rarotongan
+rd 	2	No description - not a known MARC code
+roh	3	Raeto-Romance
+rom	4	Romani
+rum	128	Romanian
+rus	2703	Russian
+sah	2	Yakut
+sai	3	South American Indian (Other)
+sal	1	Salishan languages
+san	86	Sanskrit
+sat	22	Santali
+scc	94	Serbian  DEPRECEATED
+sco	9	Scots
+scr	38	Croatian  DEPRECEATED
+shn	16	Shan
+sin	30	Sinhalese
+sit	17	Sino-Tibetan (Other)
+sla	2	Slavic (Other)
+slo	21	Slovak
+slv	21	Slovenian
+smo	31	Samoan
+sna	4	Shona
+snd	233	Sindhi
+som	1	Somali
+sot	13	Sotho
+spa	3271	Spanish
+srp	19	Serbian
+suk	7	Sukuma
+sun	56	Sundanese
+sus	2	Susu
+swa	3	Swahili
+swe	1129	Swedish
+syc	38	Syriac
+syr	13	"Syriac, Modern"
+tah	2	Tahitian
+taj	2	Tajik  DEPRECEATED
+tam	826	Tamil
+tat	1	Tatar
+tel	119	Telugu
+tem	8	Temne
+tgl	9	Tagalog
+tha	69	Thai
+tib	9	Tibetan
+tig	1	Tigré
+tog	1	Tonga (Nyasa)
+ton	3	Tongan
+tru	1	Truk  DEPRECEATED
+tsi	1	Tsimshian
+tsn	6	Tswana
+tso	2	Tsonga
+tur	50	Turkish
+tut	1	Altaic (Other)
+twi	1	Twi
+udm	2	Udmurt
+ukr	123	Ukrainian
+umb	3	Umbundu
+und	308941	Undetermined
+urd	55	Urdu
+vie	14	Vietnamese
+vol	5	Volapük
+wak	1	Wakashan languages
+wel	844	Welsh
+wen	69	Sorbian (Other)
+wol	1	Wolof
+xho	19	Xhosa
+yid	703	Yiddish
+yor	19	Yoruba
+zul	13	Zulu
+zxx	1534	No linguistic content
+|  	30	No description - not a known MARC code
+|ar	65	No description - not a known MARC code
+|be	4	No description - not a known MARC code
+|ch	21	No description - not a known MARC code
+|en	15	No description - not a known MARC code
+|he	87	No description - not a known MARC code
+|in	1	No description - not a known MARC code
+|jp	15	No description - not a known MARC code
+|th	5	No description - not a known MARC code
+|ti	2	No description - not a known MARC code
+|tu	9	No description - not a known MARC code
+|ur	2	No description - not a known MARC code
+||a	2	No description - not a known MARC code
+||c	1	No description - not a known MARC code
+||e	1	No description - not a known MARC code
+||h	1	No description - not a known MARC code
+|||	1162736	No description - not a known MARC code

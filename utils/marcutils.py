@@ -144,6 +144,7 @@ def get_pub_detail(collated_record):
       return u""
 
     return map(present_value, [(place, pdtype), (maker, pdtype), (date, pdtype)])
+  return [u"", u"", u""]
 
 def get_phys_desc(collated_record):
   # $a - Extent (R)
@@ -189,6 +190,10 @@ def get_shelfmarks(collated_record):
 def get_solr_doc(collated_record):
   names = get_names(collated_record)
   pubplace, maker, pubdate = get_pub_detail(collated_record)
+  domids = get_domids(collated_record)
+  digital = False
+  if domids:
+    digital = True
   doc = {'id': get_sysnum(collated_record),
          'title': get_titles(collated_record),
          'personal': names['personal'],
@@ -198,7 +203,8 @@ def get_solr_doc(collated_record):
          'date': pubdate,
          'physdesc': get_phys_desc(collated_record),
          'general': get_general_note(collated_record),
-         'domids': get_domids(collated_record),
+         'domids': domids,
          'shelfmarks': get_shelfmarks(collated_record),
-         'lang': get_lang(collated_record)}
+         'lang': get_lang(collated_record),
+         'digital': digital}
   return doc

@@ -7,6 +7,15 @@ from collections import defaultdict
 
 from settings import DATAROOT
 
+YEAR_P = re.compile(r"(1[0-9]{3})")
+
+def find_a_year(args):
+  for term in args:
+    d = YEAR_P.search(term)
+    if d != None:
+      return d.groups()[0]
+  return u""
+
 def generate_marcfiles(reverse_order = False):
   docfiles = sorted([x for x in os.listdir(DATAROOT) if x.startswith("19C_0")])
   if reverse_order:
@@ -194,6 +203,7 @@ def get_solr_doc(collated_record):
   digital = False
   if domids:
     digital = True
+  year = find_a_year([pubdate, maker, pubplace])
   doc = {'id': get_sysnum(collated_record),
          'title': get_titles(collated_record),
          'personal': names['personal'],
@@ -201,6 +211,7 @@ def get_solr_doc(collated_record):
          'place': pubplace,
          'maker': maker,
          'date': pubdate,
+         'year': year,
          'physdesc': get_phys_desc(collated_record),
          'general': get_general_note(collated_record),
          'domids': domids,

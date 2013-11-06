@@ -63,6 +63,7 @@
    <field name="place" type="text_general" indexed="true" stored="true" omitNorms="true" termVectors="true"/>
    <field name="maker" type="text_general" indexed="true" stored="true" omitNorms="true" termVectors="true"/>
    <field name="date" type="text_general" indexed="true" stored="true" omitNorms="true" termVectors="true"/>
+   <field name="year" type="string" indexed="true" stored="true" omitNorms="true" termVectors="true"/>
    <field name="physdesc" type="text_general" indexed="true" stored="true" omitNorms="true"/>
    <field name="general" type="text_general" indexed="true" stored="true" omitNorms="true"/>
    <field name="domids" type="string" indexed="true" stored="true" omitNorms="true" multiValued="true"/>

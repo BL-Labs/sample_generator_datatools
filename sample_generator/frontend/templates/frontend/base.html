@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>{% block title %}Sample Generator{% endblock %}</title>
+
+	<script src="{% static "js/jquery.min.js" %}"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+	<link rel="stylesheet" href="{% static "css/base.css" %}" />
+	<link rel="stylesheet" href="{% static "css/skeleton.css" %}" />
+	<link rel="stylesheet" href="{% static "css/layout.css" %}" />
+
+	<link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
+	<link rel="apple-touch-icon" href="{% static "images/apple-touch-icon.png" %}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{% static "images/apple-touch-icon-72x72.png" %}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{% static "images/apple-touch-icon-114x114.png" %}">
+        {% block scripting %}{% endblock %}
+	<style>
+        #header {
+		text-align: right;
+	}
+	.smallitem {
+		float: left;
+		width: 120px;
+		height: 120px;
+	}
+        .smallimage img {
+                height: 100px;
+		width:auto;
+	}
+        .smallimage img {
+		height: auto;
+		width: 100px;
+	}
+        {% block pagestyling %}{% endblock %}
+	</style>
+</head>
+
+<body>
+	<div id="content">
+	{% block content %}{% endblock %}
+	</div>
+	<script>
+	{% block onceloadedscripts %}{% endblock %}
+        </script>
+</body>
+</html>

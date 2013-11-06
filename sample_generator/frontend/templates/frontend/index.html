@@ -1,0 +1,26 @@
+
+{% extends "frontend/base.html" %}
+
+{% block title %}The Sample Generator{% endblock %}
+
+{% block pagestyling %}
+
+{% endblock %} 
+
+{% block scripting %}
+{% include "frontend/chart.html" %}
+{% endblock %}
+
+{% block content %}
+<h1>The Sample Generator</h1>
+<div id="filterform">
+  <form method="post" action="{% url 'index' %}">
+    <h3> How many works contain the words:</h3>
+    {% csrf_token %}
+    <p><input type="text" class="filter" placeholder="e.g. 'song music folk'" name="query" value="{{ query }}"/></p>
+    <p>From year: <input type="text" class="yearstart" placeholder="1836" name="yearstart" value="{{ yearstart }}"/> to <input type="text" placeholder="1888" name="yearend" value="{{ yearend }}"/></p>
+    <p><input type="submit" value="Apply Filter"/></p>
+  </form>
+</div>
+<div id="distribution" style="width: 900px; height: 500px;"></div>
+{% endblock %}

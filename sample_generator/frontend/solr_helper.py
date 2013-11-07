@@ -1,4 +1,5 @@
 import pysolr
+import time, hashlib
 
 from sample_generator.settings import SOLR_CONNECTION
 
@@ -11,6 +12,8 @@ FACET_DICT = {'facet':'true',
 
 JUST_FACET_DICT = FACET_DICT.copy()
 JUST_FACET_DICT.update({'rows':1, 'fl':'score'})
+
+FAILED_SAMPLE = 9999999999999999
 
 def apply_year_range(filter, yearstart, yearend = None):
   if yearend:
@@ -28,8 +31,14 @@ def parse_facet(s_results, facet="year"):
       fdict[f] = val
   return fdict
 
-def get_distribution(filter_query, yearstart=None, yearend=None):
+def apply_add_q(f1, aq):
+  return u"{0} AND ({1})".format(f1, aq)
+
+def get_distribution(filter_query, yearstart=None, yearend=None, additional_query = None):
   aug_filter = apply_year_range(filter_query, yearstart, yearend)
+  if additional_query:
+    aug_filter = apply_add_q(aug_filter, additional_query)
+
   results = solr.search(aug_filter, **JUST_FACET_DICT)
   all_vals = parse_facet(results, "year")
   all_hits = results.hits
@@ -125,3 +134,99 @@ def _generate_html(q, filename, yearstart=None, yearend=None):
     fn.write(middle.encode("utf-8"))
     fn.write(footer.format("distribution").encode("utf-8"))
 
+def group_years(dataset, start=u"1800", size=5):
+  grouped = [dataset[0]]
+  current = []
+  cyear = int(start) + size
+  for row in dataset[1:]:
+    if not current:
+      current = row[1:]
+    else:
+      for idx, value in enumerate(row[1:]):
+        current[idx] += value
+    if int(row[0]) == cyear:
+      grouped.append([u"{0}".format(str(cyear-size))] + current)
+      current = []
+      cyear += size
+  return grouped
+
+def get_sample_set(filter_query, yearstart, yearend, sample_size, sample_type, digital_only, randomseed = None, add_q = None, interval = 5):
+  # First, how big a set?
+  if not randomseed:
+    randomseed = hashlib.md5(str(time.time())).hexdigest()
+
+  aug_filter = apply_year_range(filter_query, yearstart, yearend)
+  if add_q:
+    aug_filter = apply_add_q(aug_filter, add_q)
+
+  dataset, all_hits, dig_hits = get_distribution(aug_filter, yearstart=yearstart, yearend=yearend)
+  if digital_only:
+    aug_filter = apply_digital(aug_filter)
+
+  if sample_type == "random":
+    # easy, just take random sample or rather, let Solr do the hard work:
+    # draw from the whole thing:
+    rows = 0
+    try:
+      ssize = float(sample_size)/ 100.0
+      rows = int(ssize * int(all_hits))
+      if digital_only:
+        rows = int(ssize * int(dig_hits))
+    except ValueError:
+      print("Cock up")
+    results = solr.search(aug_filter, **{ 'rows':rows,
+                                          'sort':"random_{0} desc".format(randomseed),
+                                        })
+    counts = {}
+    for doc in results.docs:
+      year = doc.get("year", ["0000"])[0]
+      if year not in counts:
+        counts[year] = 0
+      counts[year] += 1
+
+    dataset[0] = [u'year', u'all', u'digital only', u'sample']
+    for idx in range(len(dataset)-1):
+      year_c = dataset[idx+1][0]
+      if year_c in counts:
+        dataset[idx+1].append(counts[year_c])
+      else:
+        dataset[idx+1].append(0)
+    return results.docs, rows, randomseed, dataset, all_hits, dig_hits
+  elif sample_type=="randomprop":
+    grouped = group_years(dataset, yearstart, interval)
+    maxratio = 0
+    docs = []
+    total_sample_size = 0
+    for row in grouped[1:]:
+      if row[2]:
+        ratio = row[1]/float(row[2])
+      elif row[1]:
+        ratio = FAILED_SAMPLE     #  Real-world things, but zero digitised.
+      if ratio > maxratio:
+        maxratio = ratio
+    if maxratio and maxratio != FAILED_SAMPLE:
+      ssize = float(sample_size)/ 100.0
+      sample_size_dict = {}
+      grouped[0].append(u"sample")
+      for idx, row in enumerate(grouped[1:]):
+        slice_size = int(row[1]/maxratio)
+        total_sample_size += slice_size
+        sample_size_dict[row[0]] = slice_size
+        grouped[idx+1].append(slice_size)
+      for idx in range((int(yearend) - int(yearstart)) / interval):
+        ys = str(int(yearstart) + idx * interval)
+        ye = str(int(ys) + interval - 1)
+        current_filter = apply_year_range(filter_query, ys, ye)
+        if add_q:
+          current_filter = apply_add_q(current_filter, add_q)
+        if digital_only:
+          current_filter = apply_digital(current_filter)
+        rows = sample_size_dict[ys]
+        
+        results = solr.search(current_filter, **{ 'rows':rows,
+                                                  'sort':"random_{0} desc".format(randomseed),
+                                                 })
+        docs.extend(results.docs)
+
+      return docs, total_sample_size, randomseed, grouped, all_hits, dig_hits
+  return [],0,"",[],0,0

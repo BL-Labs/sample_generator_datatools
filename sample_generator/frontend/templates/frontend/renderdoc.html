@@ -1,0 +1,5 @@
+<div class="record">
+<p><em>ID: {{ doc.id }}</em> <strong>{% for title in doc.title %}{{title}} {% endfor %}</strong>, <em>{% for p in doc.personal %}{{ p }}, {% endfor %}{% for c in doc.corporate %}{{ c }}, {% endfor %}</em>
+<strong>{% for date in doc.date %}{% if date|slice:"0" == "p" %}Published: {{ date|slice:"2:" }}{% else %}{{ date|slice:"2:" }}{% endif %}{% endfor %}</strong></p>
+<p>{% for place in doc.place %}{{ place|slice:"2:" }} {% endfor %}{% for maker in doc.maker %}{{ maker|slice:"2:" }} {% endfor %}</p>{% if "domids" in doc %}<p>Download: {% for domid in doc.domids %}<a href="http://access.dl.bl.uk/{{ domid }}">{{domid}}</a> {% endfor %}{% endif %}
+</div>

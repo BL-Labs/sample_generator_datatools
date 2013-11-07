@@ -1,0 +1,94 @@
+
+{% extends "frontend/base.html" %}
+
+{% block title %}The Sample Generator - Samples{% endblock %}
+
+{% block pagestyling %}
+body {
+	font-size: 0.9em;
+	font-family: Verdana, sans-serif;
+}
+#content {
+	text-align: center;
+}
+#samplecontainer {
+	width: 800px;
+	margin: 0 auto;
+        text-align: left;
+}
+#filterform {
+	float: right;
+	width: 200px;
+}
+#filter_query {
+	height: 4em;
+}
+.record {
+	border-top: 0.5px solid #bbb;
+}
+{% endblock %} 
+
+{% block scripting %}
+{% include "frontend/chart.html" %}
+{% endblock %}
+
+{% block content %}
+<h1>The Sample Generator - Sample set</h1>
+  <div id="info">
+   <ul><li>Filter query: <strong>"{{ query }}"</strong></li>
+   {% if additional_query %}<li>cross-referenced against: <strong>"{{ additional_query }}"</strong></li>{% endif %}
+    <li>From <strong>{{ yearstart }}</strong> to <strong>{{ yearend }}</strong></li>
+    <li>Sample size: {{ sample_size }}% -> {{ doc_number }} {% if digital_only %}(electronic versions only){% endif %}</li>
+    <li><small><em>Random seed: {{ randomseed }}</em></small></li>
+   </ul>
+  </div>
+  <div id="filterform">
+<p><a href="{{ geturl }}">Link to this</a></p>
+<p><a href="{{ geturl_tsv }}">Download this</a></p>
+    <form method="post" action="{% url 'index' %}">
+      <h3> Refine your filter terms</h3>
+      {% csrf_token %}
+      <p><textarea id="filter_query" placeholder="e.g. 'song music folk'" name="query" value="{{ query }}">{{ query }}</textarea></p>
+      <p><textarea id="additional_query" placeholder="(optional)" name="additional_query" value="{{ additional_query }}">{{ additional_query }}</textarea></p>
+      <p>From year: <input type="text" class="yearstart" placeholder="1836" name="yearstart" value="{{ yearstart }}"/> to <input type="text" placeholder="1888" name="yearend" value="{{ yearend }}"/></p>
+      <p><input type="submit" value="Reapply Filter"/></p>
+    </form>
+    <a href="{% url 'index' %}">Reset all</a>
+  <form method="post" action="{% url 'samplegenerate' %}">
+    <h3> Regenerate sample</h3>
+    <p>Filter: "{{ query }}"</p>
+    <p>From {{ yearstart }} to {{ yearend }}</p>
+    <p><label for="digital_only">Include only records with electronic copies: </label><input id="digital_only" type="checkbox" name="digital_only" {% if digital_only == True  %}checked{% endif %}/></p>
+    <p><label for="sample_size">Sample Size: </label><select name="sample_size" id="sample_size">
+<option value="10" {% if sample_size == "10" %}selected{% endif %}>10%</option>
+<option value="20" {% if sample_size == "20" %}selected{% endif %}>20%</option>
+<option value="30" {% if sample_size == "30" %}selected{% endif %}>30%</option>
+<option value="40" {% if sample_size == "40" %}selected{% endif %}>40%</option>
+<option value="50" {% if sample_size == "50" %}selected{% endif %}>50%</option>
+<option value="60" {% if sample_size == "60" %}selected{% endif %}>60%</option>
+<option value="70" {% if sample_size == "70" %}selected{% endif %}>70%</option>
+<option value="80" {% if sample_size == "80" %}selected{% endif %}>80%</option>
+<option value="90" {% if sample_size == "90" %}selected{% endif %}>90%</option>
+<option value="100" {% if sample_size == "100" %}selected{% endif %}>All</option>
+</select>
+<label for="sample_type">Type of sample: </label>
+<select name="sample_type" id="sample_type">
+<option value="random" {% if sample_type == "random" %}selected{% endif %}>Draw sample at random from all of the hits</option>
+<option value="randomprop" {% if sample_type == "randomprop" %}selected{% endif %}>Draw sample at random, but in proportion*</option>
+</select></p>
+    {% csrf_token %}
+    <input type="hidden" name="query" value="{{ query }}"/>
+    <input type="hidden" name="additional_query" value="{{ additional_query }}"/>
+    <input type="hidden" name="yearstart" value="{{ yearstart }}"/>
+    <input type="hidden" name="yearend" value="{{ yearend }}"/>
+    <p><input type="submit" value="Generate Sample"/></p>
+  </form>
+  </div>
+  <div id="distribution" style="width: 800px; height: 400px;"></div>
+<div id="samplecontainer">
+<p>Number in sample: {{ doc_number }}</p>
+{% for doc in sample_set %}
+{% include 'frontend/renderdoc.html' %}
+{% endfor %}
+</div>
+{% endblock %}
